@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace social_media_dotnet_api.Controllers;
+namespace DockerNetExample.Controllers;
 
 [ApiController]
 [Route("[controller]")]
