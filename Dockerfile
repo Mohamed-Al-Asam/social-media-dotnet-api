@@ -1,19 +1,10 @@
-FROM microsoft/aspnetcore:2.0 AS base
+FROM mcr.microsoft.com/dotnet/sdk:6.0-alpine as build
 WORKDIR /app
-EXPOSE 80
-
-FROM microsoft/aspnetcore-build:2.0 AS build
-WORKDIR /src
-COPY swagger-training.csproj ./
-RUN dotnet restore -nowarn:msb3202,nu1503
 COPY . .
-WORKDIR /src/
-RUN dotnet build swagger-training.csproj -c Release -o /app
+RUN dotnet restore
+RUN dotnet publish -o /app/published-app
 
-FROM build AS publish
-RUN dotnet publish swagger-training.csproj -c Release -o /app
-
-FROM base AS final
+FROM mcr.microsoft.com/dotnet/aspnet:6.0-alpine as runtime
 WORKDIR /app
-COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "swagger-training.dll"]
+COPY --from=build /app/published-app /app
+ENTRYPOINT [ "dotnet", "/app/DockerNetExample.dll" ]

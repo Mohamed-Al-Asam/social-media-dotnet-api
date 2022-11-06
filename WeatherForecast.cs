@@ -1,4 +1,4 @@
-namespace DockerNetExample;
+namespace social_media_dotnet_api;
 
 public class WeatherForecast
 {
