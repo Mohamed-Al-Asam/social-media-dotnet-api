@@ -9,6 +9,9 @@ sudo apt-get update && \
 dotnet new webapi -o src
 dotnet new sln
 dotnet sln add src
-docker build . -t socialMediaDotnetApi
-docker run --name socialMediaDotnetApi -p 8081:80 -d socialMediaDotnetApi
+docker build . -t social_media_dotnet_api
+docker run --name social_media_dotnet_api -p 8081:80 -d social_media_dotnet_api
 docker ps
+
+docker kill $(docker ps -q)
+docker system prune --all --force --volumes
