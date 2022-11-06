@@ -5,3 +5,10 @@ rm packages-microsoft-prod.deb
 
 sudo apt-get update && \
   sudo apt-get install -y dotnet-sdk-6.0
+
+dotnet new webapi -o src
+dotnet new sln
+dotnet sln add src
+docker build . -t socialMediaDotnetApi
+docker run --name socialMediaDotnetApi -p 8081:80 -d socialMediaDotnetApi
+docker ps
