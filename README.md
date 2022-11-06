@@ -6,11 +6,11 @@ rm packages-microsoft-prod.deb
 sudo apt-get update && \
   sudo apt-get install -y dotnet-sdk-6.0
 
-dotnet new webapi -o src
+dotnet new webapi -o DockerNetExample
 dotnet new sln
-dotnet sln add src
-docker build . -t social_media_dotnet_api
-docker run --name social_media_dotnet_api -p 8081:80 -d social_media_dotnet_api
+dotnet sln add DockerNetExample
+docker build . -t dotnetexample
+docker run --name dotnetexample -p 8081:80 -d dotnetexample
 docker ps
 
 docker kill $(docker ps -q)
